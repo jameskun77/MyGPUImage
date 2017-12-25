@@ -10,7 +10,7 @@
         android:layout_above="@+id/bar" />
     
     <ImageView
-        android:id="@+id/image_switch_camera"
+        android:id="@+id/img_switch_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:layout_alignParentRight="true"
@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:max="100"/>
         <Button
-            android:id="@+id/butto_choose_filter"
+            android:id="@+id/button_choose_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Choose Filter"/>
