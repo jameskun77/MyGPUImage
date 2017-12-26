@@ -15,6 +15,8 @@ import android.widget.SeekBar;
 import com.example.library.GPUImage;
 import com.example.library.GPUImageFilter;
 import com.example.mygpuimage.camera.CameraHelper;
+import com.example.mygpuimage.GPUImageFilterTools.FilterAdjuster;
+import com.example.mygpuimage.GPUImageFilterTools.OnGpuImageFilterChosenListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,7 +35,7 @@ public class ActivityCamera extends Activity implements SeekBar.OnSeekBarChangeL
     private GPUImage mGPUImage;
     private CameraLoader mCamera;
     private GPUImageFilter mFilter;
-    //private FilterAdjuster mFilterAdjuster;
+    private FilterAdjuster mFilterAdjuster;
 
     @Override
     public void onCreate(final Bundle savedInstanceState){
@@ -72,14 +74,14 @@ public class ActivityCamera extends Activity implements SeekBar.OnSeekBarChangeL
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.button_choose_filter:
-//                GPUImageFilterTools.showDialog(this, new OnGpuImageFilterChosenListener() {
-//
-//                    @Override
-//                    public void onGpuImageFilterChosenListener(final GPUImageFilter filter) {
-//                        switchFilterTo(filter);
-//                    }
-//                });
-//                break;
+                GPUImageFilterTools.showDialog(this, new OnGpuImageFilterChosenListener() {
+
+                    @Override
+                    public void onGpuImageFilterChosenListener(final GPUImageFilter filter) {
+                        switchFilterTo(filter);
+                    }
+                });
+                break;
 
             case R.id.button_capture:
                 if (mCamera.mCameraInstance.getParameters().getFocusMode().equals(
@@ -191,20 +193,20 @@ public class ActivityCamera extends Activity implements SeekBar.OnSeekBarChangeL
     }
 
     private void switchFilterTo(final GPUImageFilter filter) {
-//        if (mFilter == null
-//                || (filter != null && !mFilter.getClass().equals(filter.getClass()))) {
-//            mFilter = filter;
-//            mGPUImage.setFilter(mFilter);
-//            mFilterAdjuster = new FilterAdjuster(mFilter);
-//        }
+        if (mFilter == null
+                || (filter != null && !mFilter.getClass().equals(filter.getClass()))) {
+            mFilter = filter;
+            mGPUImage.setFilter(mFilter);
+            mFilterAdjuster = new FilterAdjuster(mFilter);
+        }
     }
 
     @Override
     public void onProgressChanged(final SeekBar seekBar, final int progress,
                                   final boolean fromUser) {
-//        if (mFilterAdjuster != null) {
-//            mFilterAdjuster.adjust(progress);
-//        }
+        if (mFilterAdjuster != null) {
+            mFilterAdjuster.adjust(progress);
+        }
     }
 
     @Override
